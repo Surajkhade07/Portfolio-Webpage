@@ -532,7 +532,7 @@ body.dark-mode .project-tags .tag:hover {
     cursor: pointer;
     border: none;
     box-shadow: 0 4px 12px var(--shadow-color);
-    transition: transform 0.2s, box-shadow 0.3s;
+    transition: transform 0.2s, box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .btn:hover {
@@ -549,6 +549,44 @@ body.dark-mode .project-tags .tag:hover {
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+}
+
+.project-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.project-links .btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: rgba(59, 130, 246, 0.08);
+}
+
+body.dark-mode .btn-outline {
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .btn-outline:hover {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 /* CONTACT SECTION */
