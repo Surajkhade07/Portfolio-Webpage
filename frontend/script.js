@@ -44,7 +44,10 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', newTheme);
 });
 
-// Contact Form Submit Handler
+// Contact Form Submit Handler — powered by Web3Forms (free, no backend needed)
+// Get your free API key at: https://web3forms.com/register  → enter khadesuraj80@gmail.com
+const WEB3FORMS_API_KEY = "de4305ed-7bfb-4052-8087-d6bca942e7a2"; // ← replace this after getting key
+
 const contactForm = document.getElementById('contactForm');
 const sendBtn = document.getElementById('sendBtn');
 const responseMsg = document.getElementById('responseMsg');
@@ -64,31 +67,37 @@ if (contactForm) {
 
         // Show loading state
         sendBtn.disabled = true;
-        sendBtn.textContent = 'Sending...';
+        sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:8px;"></i>Sending...';
         responseMsg.className = 'response-msg';
         responseMsg.textContent = '';
 
         try {
-            const response = await fetch('/api/feedback', {
+            const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, message })
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    access_key: WEB3FORMS_API_KEY,
+                    name: name,
+                    email: email,
+                    message: message,
+                    subject: `📬 New Portfolio Message from ${name}`
+                })
             });
 
             const result = await response.json();
 
-            if (response.ok) {
-                showResponse(result.message || 'Message sent successfully!', 'success');
+            if (result.success) {
+                showResponse("✅ Message sent! I'll get back to you soon.", 'success');
                 contactForm.reset();
             } else {
                 showResponse(result.message || 'Failed to send message. Please try again.', 'error');
             }
         } catch (error) {
-            console.error('Error sending feedback:', error);
+            console.error('Error sending message:', error);
             showResponse('An error occurred. Please check your connection and try again.', 'error');
         } finally {
             sendBtn.disabled = false;
-            sendBtn.textContent = 'Send Message';
+            sendBtn.innerHTML = '<i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i>Send Message';
         }
     });
 }
