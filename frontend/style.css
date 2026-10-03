@@ -164,6 +164,29 @@ nav .left {
     width: 100%;
 }
 
+.nav-links .resume-btn {
+    padding: 6px 16px;
+    border: 1.5px solid var(--primary-color);
+    border-radius: 20px;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-links .resume-btn::after {
+    display: none;
+}
+
+.nav-links .resume-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
 #theme-toggle {
     font-size: 1.3rem;
     cursor: pointer;
@@ -217,6 +240,17 @@ nav .left {
 #element {
     color: var(--primary-color);
     font-weight: 700;
+}
+
+.hero-btn-container {
+    margin-top: 28px;
+}
+
+.hero-btn-container .btn {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    padding: 12px 28px;
 }
 
 .rightSection {
